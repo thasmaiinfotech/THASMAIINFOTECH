@@ -8,56 +8,64 @@ const services = [
         description: "Device connectivity, sensor integration, MQTT/REST APIs, dashboards, and alerts.",
         icon: <Wifi size={24} />,
         tags: ["IoT", "MQTT", "Edge Devices", "Cloud Integration"],
-        color: "text-accent-blue bg-accent-blue/10"
+        color: "text-accent-blue bg-accent-blue/10",
+        link: "#"
     },
     {
         title: "Financial Solutions",
         description: "Billing automation, reconciliation dashboards, and profitability analytics.",
         icon: <TrendingUp size={24} />,
         tags: ["Billing Automation", "BI Dashboards", "Reports"],
-        color: "text-green-400 bg-green-400/10"
+        color: "text-green-400 bg-green-400/10",
+        link: "#"
     },
     {
         title: "Stock Analysis & Analytics",
         description: "Tools for market data ingestion, portfolio analytics, and actionable insights.",
         icon: <LineChart size={24} />,
         tags: ["Data Pipelines", "Backtesting", "Visualization"],
-        color: "text-accent-violet bg-accent-violet/10"
+        color: "text-accent-violet bg-accent-violet/10",
+        link: "#"
     },
     {
         title: "Gen AI & Agentic AI",
         description: "LLM-powered assistants, multi-agent workflows, document Q&A, and automation.",
         icon: <Brain size={24} />,
-        tags: ["LLMs", "RAG", "Agentic AI"],
-        color: "text-secondary bg-secondary/10"
+        tags: ["LLMs", "RAG", "Agentic AI", "Training"],
+        color: "text-secondary bg-secondary/10",
+        link: "/training/ai/Thasmai - Gen AI & Agentic AI - Design Patterns.pdf"
     },
     {
         title: "GPS-Based Asset Management",
         description: "Real-time tracking for vehicles/assets, geofencing, alerts, trip insights.",
         icon: <Map size={24} />,
         tags: ["GPS", "Telematics", "Maps"],
-        color: "text-orange-400 bg-orange-400/10"
+        color: "text-orange-400 bg-orange-400/10",
+        link: "#"
     },
     {
         title: "Project-Based Consultancy",
         description: "Architecture, delivery, and coaching for complex projects.",
         icon: <Users size={24} />,
         tags: ["Consulting", "Architecture", "Delivery"],
-        color: "text-accent-teal bg-accent-teal/10"
+        color: "text-accent-teal bg-accent-teal/10",
+        link: "#"
     },
     {
         title: "Mobile App Development",
         description: "Native and cross-platform apps for iOS and Android, from idea to launch.",
         icon: <Smartphone size={24} />,
         tags: ["iOS", "Android", "Swift", "Kotlin"],
-        color: "text-pink-400 bg-pink-400/10"
+        color: "text-pink-400 bg-pink-400/10",
+        link: "#"
     },
     {
         title: "AI Solutions",
         description: "Custom ML models, predictive analytics, and AI integration into existing systems.",
         icon: <Cpu size={24} />,
         tags: ["ML Models", "Prediction", "MLOps"],
-        color: "text-red-400 bg-red-400/10"
+        color: "text-red-400 bg-red-400/10",
+        link: "#"
     }
 ];
 
@@ -109,7 +117,12 @@ const Services = () => {
                                     </span>
                                 ))}
                             </div>
-                            <a href="#" className="inline-flex items-center text-sm font-semibold text-secondary hover:text-secondary-hover transition-colors">
+                            <a
+                                href={service.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center text-sm font-semibold text-secondary hover:text-secondary-hover transition-colors"
+                            >
                                 Learn More <ArrowRight size={16} className="ml-1 group-hover:translate-x-1 transition-transform" />
                             </a>
                         </motion.div>
