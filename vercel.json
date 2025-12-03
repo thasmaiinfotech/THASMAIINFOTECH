@@ -1,8 +1,12 @@
+```json
 {
+    "cleanUrls": true,
+    "trailingSlash": false,
     "rewrites": [
         {
-            "source": "/(.*)",
+            "source": "/((?!assets/|images/|logo.png|vite.svg|favicon.ico).*)",
             "destination": "/index.html"
         }
     ]
 }
+```
