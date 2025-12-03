@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Phone, Mail, Globe, Linkedin, ArrowLeft } from 'lucide-react';
+import { Helmet } from 'react-helmet-async';
 import { teamMembers } from '../data/teamData';
 
 const ProfilePage = () => {
@@ -12,53 +13,27 @@ const ProfilePage = () => {
         return <Navigate to="/" replace />;
     }
 
-    useEffect(() => {
-        // Update Title
-        document.title = member.seo.title;
-
-        // Update Meta Tags
-        const updateMeta = (name, content) => {
-            let element = document.querySelector(`meta[name="${name}"]`);
-            if (!element) {
-                element = document.createElement('meta');
-                element.setAttribute('name', name);
-                document.head.appendChild(element);
-            }
-            element.setAttribute('content', content);
-        };
-
-        const updateOgMeta = (property, content) => {
-            let element = document.querySelector(`meta[property="${property}"]`);
-            if (!element) {
-                element = document.createElement('meta');
-                element.setAttribute('property', property);
-                document.head.appendChild(element);
-            }
-            element.setAttribute('content', content);
-        };
-
-        updateMeta('description', member.seo.description);
-        updateMeta('author', member.company);
-
-        updateOgMeta('og:title', member.seo.ogTitle);
-        updateOgMeta('og:description', member.seo.ogDescription);
-        updateOgMeta('og:image', member.photoUrl); // Using relative path, ideally absolute URL
-        updateOgMeta('og:url', window.location.href);
-        updateOgMeta('og:type', 'profile');
-
-        updateMeta('twitter:card', 'summary_large_image');
-        updateMeta('twitter:title', member.seo.twitterTitle);
-        updateMeta('twitter:description', member.seo.twitterDescription);
-        updateMeta('twitter:image', member.photoUrl);
-
-        // Cleanup function to reset title (optional, but good practice)
-        return () => {
-            document.title = 'Thasmai Infotech';
-        };
-    }, [member]);
-
     return (
         <div className="min-h-screen bg-background pt-24 pb-20">
+            <Helmet>
+                <title>{member.seo.title}</title>
+                <meta name="description" content={member.seo.description} />
+                <meta name="author" content={member.company} />
+
+                {/* Open Graph */}
+                <meta property="og:title" content={member.seo.ogTitle} />
+                <meta property="og:description" content={member.seo.ogDescription} />
+                <meta property="og:image" content={window.location.origin + member.photoUrl} />
+                <meta property="og:url" content={window.location.href} />
+                <meta property="og:type" content="profile" />
+
+                {/* Twitter */}
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta name="twitter:title" content={member.seo.twitterTitle} />
+                <meta name="twitter:description" content={member.seo.twitterDescription} />
+                <meta name="twitter:image" content={window.location.origin + member.photoUrl} />
+            </Helmet>
+
             <div className="container mx-auto px-6">
                 <a href="/" className="inline-flex items-center text-gray-400 hover:text-white mb-8 transition-colors">
                     <ArrowLeft size={20} className="mr-2" />
