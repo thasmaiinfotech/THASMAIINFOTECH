@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation } from 'react-router-dom';
 
 import logo from '../assets/logo.png';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
+    const location = useLocation();
+    const isHome = location.pathname === '/';
 
     useEffect(() => {
         const handleScroll = () => {
@@ -17,19 +20,19 @@ const Navbar = () => {
     }, []);
 
     const navLinks = [
-        { name: 'Home', href: '#' },
-        { name: 'About', href: '#about' },
-        { name: 'Services', href: '#services' },
-        { name: 'Industries', href: '#industries' },
-        { name: 'AI & Agents', href: '#ai-agents' },
-        { name: 'Insights', href: '#insights' },
-        { name: 'Contact', href: '#contact' },
+        { name: 'Home', href: isHome ? '#' : '/' },
+        { name: 'About', href: isHome ? '#about' : '/#about' },
+        { name: 'Services', href: isHome ? '#services' : '/#services' },
+        { name: 'Industries', href: isHome ? '#industries' : '/#industries' },
+        { name: 'AI & Agents', href: isHome ? '#ai-agents' : '/#ai-agents' },
+        { name: 'Insights', href: isHome ? '#insights' : '/#insights' },
+        { name: 'Contact', href: isHome ? '#contact' : '/#contact' },
     ];
 
     return (
         <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ${scrolled ? 'bg-background/80 backdrop-blur-md border-b border-white/5 py-4' : 'bg-transparent py-6'}`}>
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <a href="#" className="flex items-center gap-2">
+                <a href="/" className="flex items-center gap-2">
                     <img src={logo} alt="Thasmai Infotech" className="h-20 w-auto object-contain" />
                 </a>
 
@@ -40,7 +43,7 @@ const Navbar = () => {
                             {link.name}
                         </a>
                     ))}
-                    <a href="#contact" className="px-6 py-2.5 bg-secondary text-white text-sm font-medium rounded-full hover:bg-secondary-hover transition-colors shadow-lg shadow-secondary/25">
+                    <a href={isHome ? "#contact" : "/#contact"} className="px-6 py-2.5 bg-secondary text-white text-sm font-medium rounded-full hover:bg-secondary-hover transition-colors shadow-lg shadow-secondary/25">
                         Let's Talk
                     </a>
                 </div>
@@ -72,7 +75,7 @@ const Navbar = () => {
                                 </a>
                             ))}
                             <a
-                                href="#contact"
+                                href={isHome ? "#contact" : "/#contact"}
                                 className="inline-block text-center px-6 py-3 bg-secondary text-white font-medium rounded-xl hover:bg-secondary-hover transition-colors"
                                 onClick={() => setIsOpen(false)}
                             >
