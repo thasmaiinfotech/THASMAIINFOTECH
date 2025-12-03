@@ -17,9 +17,9 @@ export const teamMembers = [
         seo: {
             title: "Rammohan Yenmakaje | Founder & Managing Director | Thasmai Infotech",
             description: "Profile of Rammohan Yenmakaje – Founder & Managing Director at Thasmai Infotech. 29 years of expertise in Finance, Accounts, Governance & Administration. Former Joint Registrar at NITK Surathkal.",
-            ogTitle: "Rammohan Yenmakaje | Thasmai Infotech",
+            ogTitle: "Rammohan Yenmakaje\nTHASMAI INFOTECH PRIVATE LIMITED",
             ogDescription: "Founder & Managing Director of Thasmai Infotech. Experienced in Finance, Governance & Institutional Administration.",
-            twitterTitle: "Rammohan Yenmakaje | Thasmai Infotech",
+            twitterTitle: "Rammohan Yenmakaje\nTHASMAI INFOTECH PRIVATE LIMITED",
             twitterDescription: "Founder & Managing Director with 29 years of financial & administrative leadership experience."
         }
     },
@@ -40,9 +40,9 @@ export const teamMembers = [
         seo: {
             title: "Sudarshana Karkala | Co-Founder & Executive Director | Thasmai Infotech",
             description: "Profile of Sudarshana Karkala – Co-Founder & Executive Director at Thasmai Infotech. Engineering Leader in EV Systems, Automotive Cybersecurity, Mobility Software, Cloud & Agentic AI.",
-            ogTitle: "Sudarshana Karkala | Thasmai Infotech",
+            ogTitle: "Sudarshana Karkala\nTHASMAI INFOTECH PRIVATE LIMITED",
             ogDescription: "Co-Founder & Executive Director. Expert in EV Engineering, Automotive Cybersecurity, Agentic AI, and Mobility Software.",
-            twitterTitle: "Sudarshana Karkala | Thasmai Infotech",
+            twitterTitle: "Sudarshana Karkala\nTHASMAI INFOTECH PRIVATE LIMITED",
             twitterDescription: "Engineering Leader in EV Technologies, Cybersecurity & Agentic AI."
         }
     },
