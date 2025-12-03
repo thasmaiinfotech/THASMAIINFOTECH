@@ -1,35 +1,26 @@
 import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Industries from './components/Industries';
-import Process from './components/Process';
-import Solutions from './components/Solutions';
-import AIExplainer from './components/AIExplainer';
-import WhyUs from './components/WhyUs';
-import Insights from './components/Insights';
-import TeamSection from './components/TeamSection';
-import Contact from './components/Contact';
+import Home from './components/Home';
+import ProfilePage from './components/ProfilePage';
 import Footer from './components/Footer';
+import ScrollToTop from './components/ScrollToTop';
 
 function App() {
   return (
-    <div className="min-h-screen bg-background text-primary overflow-x-hidden">
-      <Navbar />
-      <main>
-        <Hero />
-        <Services />
-        <Industries />
-        <Process />
-        <Solutions />
-        <AIExplainer />
-        <WhyUs />
-        <Insights />
-        <TeamSection />
-        <Contact />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <ScrollToTop />
+      <div className="min-h-screen bg-background text-primary overflow-x-hidden">
+        <Navbar />
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/team/:slug" element={<ProfilePage />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

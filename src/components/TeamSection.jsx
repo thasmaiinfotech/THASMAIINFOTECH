@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Linkedin } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { teamMembers } from '../data/teamData';
 
 const TeamCard = ({ member }) => (
     <motion.div
@@ -19,50 +21,20 @@ const TeamCard = ({ member }) => (
         </div>
 
         <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
-        <p className="text-sm text-gray-400 font-medium mb-4">{member.designation}</p>
+        <p className="text-sm text-gray-400 font-medium mb-4">{member.title}</p>
         <p className="text-sm text-gray-500 leading-relaxed mb-6 line-clamp-4">
-            {member.description}
+            {member.bio}
         </p>
 
-        <a
-            href={member.linkedinUrl}
-            target="_blank"
-            rel="noopener noreferrer"
+        <Link
+            to={`/team/${member.slug}`}
             className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-secondary/10 text-secondary text-sm font-medium hover:bg-secondary hover:text-white transition-all border border-secondary/20 hover:border-secondary"
         >
-            <Linkedin size={16} />
-            <span>Connect</span>
-        </a>
+            <span>View Profile</span>
+            <ArrowRight size={16} />
+        </Link>
     </motion.div >
 );
-
-const teamMembers = [
-    {
-        id: 1,
-        photoUrl: "/images/team/rammohan.png",
-        name: "Ram Mohan",
-        designation: "Founder & Managing Director",
-        description: "Leads business strategy, operations, and client engagement with a focus on growth, partnerships, and value creation. Drives organizational vision and ensures seamless execution across all business verticals.",
-        linkedinUrl: "https://www.linkedin.com/in/member-one"
-    },
-    {
-        id: 2,
-        photoUrl: "/images/team/sudarshanakarkala.jpeg",
-        name: "Sudarshana Karkala",
-        designation: "Co-Founder & Executive Director",
-        description: "Leads architecture, product innovation, and engineering execution across IoT, AI, and software systems. Combines deep technical expertise with business insight to deliver scalable, secure, and impactful solutions for emerging digital ecosystems.",
-        linkedinUrl: "https://www.linkedin.com/in/sudarshanakarkala"
-    },
-    {
-        id: 3,
-        photoUrl: "/images/team/advisor.png",
-        name: "Strategic Advisor",
-        designation: "Strategic Technology Advisor",
-        description: "Provides architectural direction and contributes to core technical decisions across product development, infrastructure design, and scalability planning. A key knowledge backbone supporting high-impact engineering initiatives",
-        linkedinUrl: "https://www.linkedin.com/in/member-three"
-    }
-
-];
 
 const TeamSection = () => {
     return (
@@ -91,7 +63,7 @@ const TeamSection = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-center">
                     {teamMembers.map((member) => (
                         <TeamCard key={member.id} member={member} />
                     ))}
