@@ -28,6 +28,7 @@ export const teamMembers = [
         slug: "sudarshanakarkala",
         name: "Sudarshana Karkala",
         title: "Co-Founder & Executive Director",
+        qualifications: "India’s Leading eMobility & Agentic AI Architect for EV Battery, SDV, Connected Vehicles & Automotive Engineering.",
         company: "THASMAI INFOTECH PRIVATE LIMITED",
         photoUrl: "/images/team/sudarshanakarkala.jpeg",
         contact: {
