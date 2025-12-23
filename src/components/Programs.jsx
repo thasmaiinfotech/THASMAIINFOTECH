@@ -170,17 +170,17 @@ const Programs = () => {
                             initial={{ opacity: 0, scale: 0.95, y: 20 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
-                            className="relative w-full max-w-2xl bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
+                            className="relative w-full max-w-2xl max-h-[90vh] flex flex-col bg-[#0F172A] border border-white/10 rounded-3xl overflow-hidden shadow-2xl"
                         >
                             {/* Close Button */}
                             <button
                                 onClick={closeModal}
-                                className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all z-10"
+                                className="absolute top-6 right-6 p-2 rounded-full bg-white/5 hover:bg-white/10 text-gray-400 hover:text-white transition-all z-20"
                             >
                                 <X size={20} />
                             </button>
 
-                            <div className="p-8 md:p-10 pt-12">
+                            <div className="overflow-y-auto flex-1 custom-scrollbar p-8 md:p-10 pt-12">
                                 <div className="flex items-center gap-4 mb-8">
                                     <div className={`w-14 h-14 rounded-2xl flex items-center justify-center ${selectedProgram.color} shadow-lg`}>
                                         {selectedProgram.icon}
