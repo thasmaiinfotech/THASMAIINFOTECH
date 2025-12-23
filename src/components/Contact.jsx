@@ -128,6 +128,8 @@ const Contact = () => {
                                     <option value="Stock Analysis">Stock Analysis</option>
                                     <option value="GPS Asset Tracking">GPS Asset Tracking</option>
                                     <option value="Mobile App Development">Mobile App Development</option>
+                                    <option value="Internship Programs">Internship Programs</option>
+                                    <option value="Faculty Development Program (FDP)">Faculty Development Program (FDP)</option>
                                     <option value="Other">Other</option>
                                 </select>
                             </div>

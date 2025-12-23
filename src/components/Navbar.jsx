@@ -25,6 +25,7 @@ const Navbar = () => {
         { name: 'Services', href: isHome ? '#services' : '/#services' },
         { name: 'Industries', href: isHome ? '#industries' : '/#industries' },
         { name: 'AI & Agents', href: isHome ? '#ai-agents' : '/#ai-agents' },
+        { name: 'Training', href: isHome ? '#programs' : '/#programs' },
         { name: 'Insights', href: isHome ? '#insights' : '/#insights' },
         { name: 'Contact', href: isHome ? '#contact' : '/#contact' },
     ];
