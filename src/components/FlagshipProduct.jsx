@@ -23,7 +23,7 @@ const FlagshipProduct = () => {
             {/* Background glowing effects */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-secondary/5 rounded-full blur-3xl pointer-events-none" />
             <div className="absolute -top-12 left-10 w-72 h-72 bg-accent-teal/5 rounded-full blur-3xl pointer-events-none" />
-            
+
             <div className="container mx-auto px-6 relative z-10">
                 {/* Section Header */}
                 <div className="mb-12">
@@ -33,21 +33,21 @@ const FlagshipProduct = () => {
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                    
+
                     {/* Left Column: Product Information */}
                     <div className="flex flex-col justify-center text-left">
                         <h2 className="text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-white">
                             Krishi Suraksha <span className="text-gradient">AI</span>
                         </h2>
-                        
+
                         <h3 className="text-lg lg:text-xl font-medium text-gray-300 mb-6 leading-relaxed">
                             AI-Powered Smart Farm Protection Drone Platform for Rural India
                         </h3>
-                        
+
                         <p className="text-gray-400 mb-8 leading-relaxed text-base">
                             Krishi Suraksha AI is a prototype-stage intelligent agriculture platform designed to help smallholder farmers protect crops using AI, IoT sensors, smart alerts, and drone-assisted field monitoring.
                         </p>
-                        
+
                         <p className="text-gray-400 mb-8 leading-relaxed text-base">
                             The platform combines farm-side sensor monitoring, AI-powered intrusion detection, mobile alerts, and future-ready drone verification into a scalable smart agriculture ecosystem built for Indian farming conditions.
                         </p>
@@ -55,7 +55,7 @@ const FlagshipProduct = () => {
                         {/* Feature Pills */}
                         <div className="flex flex-wrap gap-2.5 mb-10">
                             {pills.map((pill, idx) => (
-                                <span 
+                                <span
                                     key={idx}
                                     className="px-3 py-1.5 bg-white/5 text-gray-300 text-xs font-medium rounded-full border border-white/10 hover:border-secondary/30 transition-all duration-300"
                                 >
@@ -64,18 +64,19 @@ const FlagshipProduct = () => {
                             ))}
                         </div>
 
+
                         {/* Action Buttons */}
                         <div className="flex flex-col sm:flex-row gap-4">
-                            <Link 
-                                to="/krishi-suraksha-ai" 
+                            <Link
+                                to="/krishi-suraksha-ai"
                                 onClick={() => logEvent('click_explore_product', 'Flagship Section', 'Krishi Suraksha AI')}
                                 className="px-8 py-4 bg-secondary text-white font-semibold rounded-xl hover:bg-secondary-hover transition-all shadow-lg shadow-secondary/25 flex items-center justify-center gap-2 group text-center"
                             >
                                 Explore Product
                                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                             </Link>
-                            <a 
-                                href="/#contact" 
+                            <a
+                                href="/#contact"
                                 onClick={() => logEvent('click_contact_team', 'Flagship Section', 'Krishi Suraksha AI')}
                                 className="px-8 py-4 bg-white/5 text-white border border-white/10 font-semibold rounded-xl hover:bg-white/10 transition-all backdrop-blur-sm flex items-center justify-center gap-2 text-center"
                             >
@@ -89,14 +90,14 @@ const FlagshipProduct = () => {
                     <div className="relative w-full max-w-lg lg:max-w-none mx-auto aspect-square flex items-center justify-center bg-background-card/25 rounded-3xl border border-white/5 p-6 backdrop-blur-sm overflow-hidden">
                         {/* Farm Background Grid */}
                         <div className="absolute inset-0 opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-                        
+
                         {/* Farmland Isometric Grid Shape */}
                         <div className="absolute bottom-4 w-[110%] h-32 bg-gradient-to-t from-accent-teal/10 to-transparent rounded-full blur-2xl pointer-events-none" />
 
                         {/* Interactive SVG Visual */}
                         <svg viewBox="0 0 500 500" className="w-full h-full relative z-10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             {/* Perspective Farmland lines */}
-                            <path d="M 50,400 L 450,400 L 350,300 L 150,300 Z" fill="url(#farmlandGrad)" opacity="0.3"/>
+                            <path d="M 50,400 L 450,400 L 350,300 L 150,300 Z" fill="url(#farmlandGrad)" opacity="0.3" />
                             <line x1="150" y1="300" x2="50" y2="400" stroke="#00C9A7" strokeWidth="1" opacity="0.3" strokeDasharray="4 4" />
                             <line x1="216" y1="300" x2="183" y2="400" stroke="#00C9A7" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
                             <line x1="283" y1="300" x2="316" y2="400" stroke="#00C9A7" strokeWidth="1" opacity="0.2" strokeDasharray="4 4" />
@@ -131,14 +132,14 @@ const FlagshipProduct = () => {
                                 <circle cx="20" cy="40" r="4" fill="#E11D48" />
 
                                 {/* Pulsing Sensor AI Detection Waves */}
-                                <motion.circle 
-                                    cx="20" cy="40" r="30" 
+                                <motion.circle
+                                    cx="20" cy="40" r="30"
                                     stroke="#00C9A7" strokeWidth="1.5"
                                     animate={{ scale: [1, 2], opacity: [0.8, 0] }}
                                     transition={{ repeat: Infinity, duration: 2.5, ease: "easeOut" }}
                                 />
-                                <motion.circle 
-                                    cx="20" cy="40" r="30" 
+                                <motion.circle
+                                    cx="20" cy="40" r="30"
                                     stroke="#00C9A7" strokeWidth="1"
                                     animate={{ scale: [1, 3], opacity: [0.5, 0] }}
                                     transition={{ repeat: Infinity, duration: 2.5, ease: "easeOut", delay: 1.2 }}
@@ -146,17 +147,17 @@ const FlagshipProduct = () => {
                             </g>
 
                             {/* Hovering Drone representation on top left */}
-                            <motion.g 
+                            <motion.g
                                 animate={{ y: [0, -12, 0], rotate: [-0.5, 0.5, -0.5] }}
                                 transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
                                 transform="translate(100, 70)"
                             >
                                 {/* Drone Shadow on Farm Grid (below) */}
                                 <ellipse cx="100" cy="280" rx="35" ry="8" fill="black" opacity="0.25" />
-                                
+
                                 {/* Drone Laser detection line */}
-                                <motion.polygon 
-                                    points="100,60 50,330 150,330" 
+                                <motion.polygon
+                                    points="100,60 50,330 150,330"
                                     fill="url(#laserGrad)"
                                     animate={{ opacity: [0.1, 0.25, 0.1] }}
                                     transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
@@ -166,18 +167,18 @@ const FlagshipProduct = () => {
                                 {/* Arms */}
                                 <line x1="40" y1="50" x2="160" y2="50" stroke="#374151" strokeWidth="4" strokeLinecap="round" />
                                 <line x1="50" y1="40" x2="150" y2="60" stroke="#1F2937" strokeWidth="3" strokeLinecap="round" />
-                                
+
                                 {/* Rotors / Motors */}
                                 <rect x="35" y="40" width="10" height="15" rx="1" fill="#4B5563" />
                                 <rect x="155" y="40" width="10" height="15" rx="1" fill="#4B5563" />
-                                
+
                                 {/* Propellers spinning representation */}
-                                <motion.ellipse 
+                                <motion.ellipse
                                     cx="40" cy="40" rx="25" ry="3" fill="#9CA3AF" opacity="0.4"
                                     animate={{ rx: [25, 2, 25] }}
                                     transition={{ repeat: Infinity, duration: 0.15, ease: "linear" }}
                                 />
-                                <motion.ellipse 
+                                <motion.ellipse
                                     cx="160" cy="40" rx="25" ry="3" fill="#9CA3AF" opacity="0.4"
                                     animate={{ rx: [2, 25, 2] }}
                                     transition={{ repeat: Infinity, duration: 0.15, ease: "linear" }}
@@ -193,7 +194,7 @@ const FlagshipProduct = () => {
                                 {/* Drone LEDs */}
                                 <circle cx="90" cy="52" r="1.5" fill="#EF4444" />
                                 <circle cx="110" cy="52" r="1.5" fill="#10B981" />
-                                <motion.circle 
+                                <motion.circle
                                     cx="100" cy="42" r="2.5" fill="#7B3FE4"
                                     animate={{ opacity: [0.2, 1, 0.2] }}
                                     transition={{ repeat: Infinity, duration: 1.5, ease: "easeInOut" }}
@@ -201,19 +202,19 @@ const FlagshipProduct = () => {
                             </motion.g>
 
                             {/* Floating Mobile Dashboard (Center-Right overlaying the grid) */}
-                            <motion.g 
+                            <motion.g
                                 animate={{ y: [0, 8, 0] }}
                                 transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 0.5 }}
                                 transform="translate(230, 160)"
                             >
                                 {/* Phone card backdrop shadow */}
                                 <rect x="0" y="0" width="125" height="210" rx="16" fill="black" opacity="0.4" filter="blur(8px)" />
-                                
+
                                 {/* Phone Outer Frame */}
                                 <rect x="0" y="0" width="120" height="200" rx="16" fill="#0B1020" stroke="#374151" strokeWidth="3" />
                                 {/* Glass Screen Inner */}
                                 <rect x="4" y="4" width="112" height="192" rx="12" fill="#111827" opacity="0.95" />
-                                
+
                                 {/* Screen notch */}
                                 <rect x="45" y="4" width="30" height="6" rx="3" fill="#000000" />
 
@@ -229,8 +230,8 @@ const FlagshipProduct = () => {
                                 <line x1="12" y1="52" x2="108" y2="52" stroke="#374151" strokeWidth="0.25" opacity="0.5" />
                                 <line x1="12" y1="68" x2="108" y2="68" stroke="#374151" strokeWidth="0.25" opacity="0.5" />
                                 {/* Bounding box overlay representing AI Detection */}
-                                <motion.rect 
-                                    x="38" y="48" width="40" height="26" rx="2" 
+                                <motion.rect
+                                    x="38" y="48" width="40" height="26" rx="2"
                                     stroke="#EF4444" strokeWidth="1" fill="none"
                                     animate={{ opacity: [0.4, 1, 0.4] }}
                                     transition={{ repeat: Infinity, duration: 1.2 }}
@@ -247,10 +248,10 @@ const FlagshipProduct = () => {
                                     transform="translate(12, 95)"
                                 >
                                     <rect x="0" y="0" width="96" height="40" rx="6" fill="#7B3FE4" fillOpacity="0.15" stroke="#7B3FE4" strokeWidth="1" />
-                                    
+
                                     <circle cx="12" cy="15" r="6" fill="#EF4444" />
                                     <path d="M12,12 L12,16 M12,18 L12,18.5" stroke="white" strokeWidth="1" strokeLinecap="round" />
-                                    
+
                                     <text x="24" y="14" fill="#FFFFFF" fontSize="6.5" fontFamily="Inter" fontWeight="bold">Intrusion Alert</text>
                                     <text x="24" y="23" fill="#D1D5DB" fontSize="5" fontFamily="Inter">Sector D • Wild Animal</text>
                                     <text x="24" y="32" fill="#A78BFA" fontSize="4.5" fontFamily="Inter" fontWeight="bold">DRONE VERIFYING...</text>
@@ -266,7 +267,7 @@ const FlagshipProduct = () => {
                                 <text x="68" y="160" fill="#00C9A7" fontSize="6.5" fontFamily="Inter" fontWeight="bold">87%</text>
 
                                 {/* Alert pulsing ring */}
-                                <motion.circle 
+                                <motion.circle
                                     cx="60" cy="182" r="5" fill="#EF4444"
                                     animate={{ scale: [1, 1.8], opacity: [1, 0] }}
                                     transition={{ repeat: Infinity, duration: 1.5 }}
