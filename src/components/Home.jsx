@@ -1,5 +1,6 @@
 import React from 'react';
 import Hero from './Hero';
+import FlagshipProduct from './FlagshipProduct';
 import Services from './Services';
 import Programs from './Programs';
 import Industries from './Industries';
@@ -15,6 +16,7 @@ const Home = () => {
     return (
         <>
             <Hero />
+            <FlagshipProduct />
             <Services />
             <Programs />
             <Industries />

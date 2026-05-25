@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Home from './components/Home';
 import ProfilePage from './components/ProfilePage';
+import KrishiSurakshaPage from './components/KrishiSurakshaPage';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 
@@ -16,6 +17,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/team/:slug" element={<ProfilePage />} />
+            <Route path="/krishi-suraksha-ai" element={<KrishiSurakshaPage />} />
           </Routes>
         </main>
         <Footer />

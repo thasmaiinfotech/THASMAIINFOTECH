@@ -123,6 +123,7 @@ const Contact = () => {
                                     className="w-full px-4 py-3 rounded-lg bg-background border border-white/10 text-white focus:border-secondary focus:ring-2 focus:ring-secondary/20 outline-none transition-all"
                                 >
                                     <option value="IoT Solutions">IoT Solutions</option>
+                                    <option value="Krishi Suraksha AI">Krishi Suraksha AI</option>
                                     <option value="Financial Analytics">Financial Analytics</option>
                                     <option value="Gen AI & Agentic AI">Gen AI & Agentic AI</option>
                                     <option value="Stock Analysis">Stock Analysis</option>
