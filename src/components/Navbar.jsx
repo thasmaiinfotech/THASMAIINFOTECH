@@ -24,6 +24,7 @@ const Navbar = () => {
         { name: 'About', href: isHome ? '#about' : '/#about' },
         { name: 'Services', href: isHome ? '#services' : '/#services' },
         { name: 'Industries', href: isHome ? '#industries' : '/#industries' },
+        { name: 'FAI AS9102', href: isHome ? '#' : 'https://fai.thasmaiinfotech.com/' },
         { name: 'AI & Agents', href: isHome ? '#ai-agents' : '/#ai-agents' },
         { name: 'Training', href: isHome ? '#programs' : '/#programs' },
         { name: 'Insights', href: isHome ? '#insights' : '/#insights' },
