@@ -28,7 +28,7 @@ export const teamMembers = [
         slug: "sudarshanakarkala",
         name: "Sudarshana Karkala",
         title: "Co-Founder & Executive Director",
-        qualifications: "Architecting the Future of EV & Automotive Engineering with GenAI, Agentic AI & Security-Driven Design",
+        qualifications: "Architecting the Future of EV & Aerospace Engineering with GenAI, Agentic AI & Security-Driven Design",
         company: "THASMAI INFOTECH PRIVATE LIMITED",
         photoUrl: "/images/team/sudarshanakarkala.jpeg",
         contact: {

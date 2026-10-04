@@ -1,6 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import process from 'process';
+import { fileURLToPath, pathToFileURL } from 'url';
+import { build } from 'vite';
 import { teamMembers } from './src/data/teamData.js';
 import { spaceResearchSeo, buildSpaceResearchSchema } from './src/data/spaceResearchContent.js';
 import { buildProfileSchema, toJsonLd } from './src/utils/structuredData.js';
@@ -9,6 +11,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const distDir = path.join(__dirname, 'dist');
+const ssrDir = path.join(__dirname, 'dist-ssr');
 const templatePath = path.join(distDir, 'index.html');
 
 // Helper to replace or add meta property tag
@@ -38,6 +41,36 @@ const addCanonical = (html, url) =>
 
 const addJsonLd = (html, data) =>
     html.replace('</head>', () => `<script type="application/ld+json" data-rh="true">${toJsonLd(data)}</script>\n</head>`);
+
+// Builds the app for Node and returns its render(url) function. The build reuses the
+// client build's hashed asset URLs, so the prerendered markup matches what hydrates it.
+const loadRenderer = async () => {
+    await build({
+        logLevel: 'error',
+        build: { ssr: 'src/entry-server.jsx', outDir: ssrDir, emptyOutDir: true },
+        // CommonJS-only packages whose named exports Node cannot import directly
+        ssr: { noExternal: ['react-helmet-async'] }
+    });
+    const { render } = await import(pathToFileURL(path.join(ssrDir, 'entry-server.js')).href);
+    return render;
+};
+
+const addPrerenderedApp = (html, appHtml) => {
+    const emptyRoot = '<div id="root"></div>';
+    if (!html.includes(emptyRoot)) {
+        throw new Error('Prerender failed: empty #root not found in dist/index.html.');
+    }
+    return html.replace(emptyRoot, () => `<div id="root">${appHtml}</div>`);
+};
+
+// Lets the browser fetch a lazy route's chunk alongside the main bundle
+const addModulePreload = (html, chunkPrefix) => {
+    const file = fs.readdirSync(path.join(distDir, 'assets'))
+        .find((name) => name.startsWith(chunkPrefix) && name.endsWith('.js'));
+    return file
+        ? html.replace('</head>', () => `<link rel="modulepreload" crossorigin href="/assets/${file}" />\n</head>`)
+        : html;
+};
 
 async function generateStaticFiles() {
     if (!fs.existsSync(templatePath)) {
@@ -181,9 +214,19 @@ async function generateStaticFiles() {
     spaceHtml = addCanonical(spaceHtml, spaceResearchSeo.url);
     spaceHtml = addJsonLd(spaceHtml, buildSpaceResearchSchema());
 
+    // Prerender the page so its content is in the initial HTML rather than client-only
+    const render = await loadRenderer();
+    spaceHtml = addPrerenderedApp(spaceHtml, await render('/space-research'));
+    spaceHtml = addModulePreload(spaceHtml, 'SpaceResearchPage-');
+    fs.rmSync(ssrDir, { recursive: true, force: true });
+
     const spaceFilePath = path.join(spaceDir, 'index.html');
     fs.writeFileSync(spaceFilePath, spaceHtml);
     console.log(`Generated: ${spaceFilePath}`);
 }
 
-generateStaticFiles();
+generateStaticFiles().catch((error) => {
+    console.error(error);
+    fs.rmSync(ssrDir, { recursive: true, force: true });
+    process.exit(1);
+});

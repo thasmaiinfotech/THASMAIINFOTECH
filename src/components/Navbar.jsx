@@ -38,8 +38,8 @@ const Navbar = () => {
                     <img src={logo} alt="Thasmai Infotech" className="h-20 w-auto object-contain" />
                 </a>
 
-                {/* Desktop Menu */}
-                <div className="hidden md:flex items-center space-x-8">
+                {/* Desktop Menu: the full link row only fits beside the logo from xl up */}
+                <div className="hidden xl:flex items-center space-x-8">
                     {navLinks.map((link) => (
                         <a key={link.name} href={link.href} className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
                             {link.name}
@@ -51,7 +51,12 @@ const Navbar = () => {
                 </div>
 
                 {/* Mobile Menu Button */}
-                <button className="md:hidden text-white" onClick={() => setIsOpen(!isOpen)}>
+                <button
+                    className="xl:hidden text-white"
+                    onClick={() => setIsOpen(!isOpen)}
+                    aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                    aria-expanded={isOpen}
+                >
                     {isOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
@@ -63,9 +68,10 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden bg-background-card border-t border-white/10 overflow-hidden"
+                        className="xl:hidden bg-background-card border-t border-white/10 overflow-hidden"
                     >
-                        <div className="flex flex-col px-6 py-8 space-y-4">
+                        {/* Scrolls inside itself when the menu is taller than the screen */}
+                        <div className="flex flex-col px-6 py-8 space-y-4 max-h-[calc(100dvh-8rem)] overflow-y-auto">
                             {navLinks.map((link) => (
                                 <a
                                     key={link.name}

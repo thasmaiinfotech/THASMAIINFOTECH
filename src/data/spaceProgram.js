@@ -13,7 +13,7 @@ export const spaceLinks = {
 };
 
 export const spaceProgram = {
-    name: "CanSat & Model Rocketry Engineering Program",
+    name: "CanSat & Model Rocketry Engineering Research Program",
     heading: "CanSat & Model Rocketry",
     subheading: "A 12-Month Theory, Simulation, Build, Test, Flight & Competition Program",
     initiated: "01 December 2025",

@@ -10,9 +10,11 @@ import ScrollToTop from './components/ScrollToTop';
 // Loaded on demand so the full curriculum page stays out of the homepage bundle
 const SpaceResearchPage = lazy(() => import('./components/SpaceResearchPage'));
 
-function App() {
+// Everything inside the router. Kept separate from App so the prerender step
+// (src/entry-server.jsx) can render the same tree under a StaticRouter.
+export function AppShell() {
   return (
-    <Router>
+    <>
       <ScrollToTop />
       <div className="min-h-screen bg-background text-primary overflow-x-hidden">
         <Navbar />
@@ -33,6 +35,14 @@ function App() {
         </main>
         <Footer />
       </div>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <Router>
+      <AppShell />
     </Router>
   );
 }
