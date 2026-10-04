@@ -13,7 +13,8 @@ export default function ScrollToTop() {
             setTimeout(() => {
                 const element = document.getElementById(hash.replace('#', ''));
                 if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
+                    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                    element.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' });
                 }
             }, 100);
         } else {

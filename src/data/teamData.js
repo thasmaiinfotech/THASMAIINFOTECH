@@ -37,14 +37,32 @@ export const teamMembers = [
             website: "https://thasmaiinfotech.com",
             linkedin: "https://www.linkedin.com/in/sudarshanakarkala/"
         },
-        bio: "Engineering leader with 20 years of experience in Mobile Security, eMobility Software Architecture, Automotive Cybersecurity, EV Battery Systems, Cloud & Agentic AI, and Large-Scale System Design.\n\nAs Co-Founder & Executive Director of Thasmai Infotech, he focuses on building secure, scalable, and innovative software solutions for Electric Vehicles, Smart Mobility, Automotive Systems, IoT, and next-generation digital technologies.\n\nFor complete professional details, visit his LinkedIn profile.",
+        bio: "Sudarshana Karkala is an engineering and technology leader with 20+ years of experience across software architecture, cybersecurity, connected systems, EV and energy platforms.\n\nAt THASMAI, his current engineering and R&D responsibilities span EV Battery Engineering, Satellite Engineering, and Model Rocketry Design & Development.\n\nHis aerospace and space research interests include Space Systems & Applications, CanSat, Avionics & Telemetry, Digital Twins and Aerospace Cybersecurity.\n\nHis experience spans Mobile Security, eMobility Software Architecture, Automotive Cybersecurity, EV Battery Systems, Cloud & Agentic AI, and Large-Scale System Design. As Co-Founder & Executive Director of Thasmai Infotech, he focuses on building secure, scalable, and innovative software solutions for Electric Vehicles, Smart Mobility, Automotive Systems, IoT, and next-generation digital technologies.\n\nFor complete professional details, visit his LinkedIn profile.",
+        focusAreas: [
+            "EV Battery Engineering",
+            "Satellite Engineering",
+            "Model Rocketry Design & Development"
+        ],
+        researchAreas: [
+            "Space Systems & Applications",
+            "CanSat",
+            "Avionics & Telemetry",
+            "Digital Twins",
+            "Aerospace Cybersecurity"
+        ],
+        // `href` opens in a new tab, `to` is an internal route
+        links: [
+            { label: "Explore Aerospace & Space Research", href: "https://aerospace.ishavasyam.org/about/sudarshana-karkala" },
+            { label: "LinkedIn", href: "https://www.linkedin.com/in/sudarshanakarkala/" },
+            { label: "CanSat & Model Rocketry Program", to: "/space-research" }
+        ],
         seo: {
             title: "Sudarshana Karkala | Co-Founder & Executive Director | THASMAI INFOTECH PRIVATE LIMITED",
-            description: "Profile of Sudarshana Karkala – Co-Founder & Executive Director at Thasmai Infotech. Engineering Leader in EV Systems, Automotive Cybersecurity, Mobility Software, Cloud & Agentic AI.",
+            description: "Profile of Sudarshana Karkala – Co-Founder & Executive Director at Thasmai Infotech. Engineering leader working in EV Battery Engineering, Satellite Engineering and Model Rocketry Design & Development, with 20+ years across software architecture, cybersecurity and connected systems.",
             ogTitle: "Sudarshana Karkala | THASMAI INFOTECH PRIVATE LIMITED",
-            ogDescription: "Co-Founder & Executive Director. Expert in EV Engineering, Automotive Cybersecurity, Agentic AI, and Mobility Software.",
+            ogDescription: "Co-Founder & Executive Director. Working in EV Battery Engineering, Satellite Engineering and Model Rocketry Design & Development.",
             twitterTitle: "Sudarshana Karkala | THASMAI INFOTECH PRIVATE LIMITED",
-            twitterDescription: "Engineering Leader in EV Technologies, Cybersecurity & Agentic AI."
+            twitterDescription: "Engineering leader in EV Battery Engineering, Satellite Engineering & Model Rocketry Design & Development."
         }
     },
     {

@@ -35,6 +35,15 @@ export default {
         'xl': '1rem',
         '2xl': '1.5rem',
         '3xl': '2rem',
+      },
+      keyframes: {
+        // Dash periods used with this must divide 48 so the loop is seamless
+        'dash-flow': {
+          to: { strokeDashoffset: '-48' },
+        },
+      },
+      animation: {
+        'dash-flow': 'dash-flow 6s linear infinite',
       }
     },
   },

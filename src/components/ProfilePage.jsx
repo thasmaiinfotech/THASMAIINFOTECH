@@ -1,9 +1,12 @@
 import React from 'react';
-import { useParams, Navigate } from 'react-router-dom';
+import { useParams, Navigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Phone, Mail, Globe, Linkedin, ArrowLeft } from 'lucide-react';
+import { Phone, Mail, Globe, Linkedin, ArrowLeft, ArrowRight } from 'lucide-react';
 import { Helmet } from 'react-helmet-async';
 import { teamMembers } from '../data/teamData';
+import { buildProfileSchema, toJsonLd } from '../utils/structuredData';
+
+const focusLink = "inline-flex items-center gap-1.5 min-h-[44px] font-semibold text-violet-300 hover:text-white transition-colors";
 
 const ProfilePage = () => {
     const { slug } = useParams();
@@ -32,6 +35,10 @@ const ProfilePage = () => {
                 <meta name="twitter:title" content={member.seo.twitterTitle} />
                 <meta name="twitter:description" content={member.seo.twitterDescription} />
                 <meta name="twitter:image" content={window.location.origin + member.photoUrl} />
+
+                {member.focusAreas && (
+                    <script type="application/ld+json">{toJsonLd(buildProfileSchema(member))}</script>
+                )}
             </Helmet>
 
             <div className="container mx-auto px-6">
@@ -94,6 +101,59 @@ const ProfilePage = () => {
                             </div>
                         )}
                     </motion.div>
+
+                    {/* Current Focus Section */}
+                    {member.focusAreas && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 20 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: 0.15 }}
+                            className="bg-white/5 rounded-2xl p-8 border border-white/5 mb-8"
+                        >
+                            <h2 className="text-2xl font-bold text-white mb-2">Current Engineering &amp; R&amp;D Focus</h2>
+                            <p className="text-gray-400 mb-6">Actively working in:</p>
+                            <ol className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                {member.focusAreas.map((area, idx) => (
+                                    <li key={area} className="bg-secondary/10 rounded-xl p-5 border border-secondary/20">
+                                        <span aria-hidden="true" className="block font-mono text-sm text-violet-300 mb-2">{idx + 1}</span>
+                                        <span className="block font-heading text-lg font-semibold text-white leading-snug">{area}</span>
+                                    </li>
+                                ))}
+                            </ol>
+
+                            {member.researchAreas && (
+                                <>
+                                    <h3 className="text-sm font-semibold uppercase tracking-wider text-gray-400 mt-8 mb-3">Aerospace &amp; Space Research Areas</h3>
+                                    <ul className="flex flex-wrap gap-2">
+                                        {member.researchAreas.map((area) => (
+                                            <li key={area} className="px-3 py-1.5 bg-white/5 text-gray-300 text-sm font-medium rounded-full border border-white/10">
+                                                {area}
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </>
+                            )}
+
+                            {member.links && (
+                                <div className="flex flex-col sm:flex-row sm:flex-wrap gap-x-8 mt-6">
+                                    {member.links.map((link) => (
+                                        link.to ? (
+                                            <Link key={link.label} to={link.to} className={focusLink}>
+                                                {link.label}
+                                                <ArrowRight size={16} aria-hidden="true" />
+                                            </Link>
+                                        ) : (
+                                            <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer" className={focusLink}>
+                                                {link.label}
+                                                <ArrowRight size={16} aria-hidden="true" />
+                                                <span className="sr-only">(opens in a new tab)</span>
+                                            </a>
+                                        )
+                                    ))}
+                                </div>
+                            )}
+                        </motion.div>
+                    )}
 
                     {/* Bio Section */}
                     <motion.div

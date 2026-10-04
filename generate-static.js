@@ -2,6 +2,8 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { teamMembers } from './src/data/teamData.js';
+import { spaceResearchSeo, buildSpaceResearchSchema } from './src/data/spaceResearchContent.js';
+import { buildProfileSchema, toJsonLd } from './src/utils/structuredData.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +30,14 @@ const replaceOrAddName = (html, name, content) => {
         return html.replace('</head>', `<meta name="${name}" content="${content}" />\n</head>`);
     }
 };
+
+// Helpers for tags that only some pages carry. data-rh="true" lets react-helmet adopt
+// the tag when the app loads instead of adding a duplicate next to it.
+const addCanonical = (html, url) =>
+    html.replace('</head>', () => `<link rel="canonical" href="${url}" data-rh="true" />\n</head>`);
+
+const addJsonLd = (html, data) =>
+    html.replace('</head>', () => `<script type="application/ld+json" data-rh="true">${toJsonLd(data)}</script>\n</head>`);
 
 async function generateStaticFiles() {
     if (!fs.existsSync(templatePath)) {
@@ -74,6 +84,10 @@ async function generateStaticFiles() {
         html = replaceOrAddName(html, 'twitter:title', member.seo.twitterTitle);
         html = replaceOrAddName(html, 'twitter:description', member.seo.twitterDescription);
         html = replaceOrAddName(html, 'twitter:image', `https://thasmaiinfotech.com${member.photoUrl}`);
+
+        if (member.focusAreas) {
+            html = addJsonLd(html, buildProfileSchema(member));
+        }
 
         const filePath = path.join(dir, 'index.html');
         fs.writeFileSync(filePath, html);
@@ -127,6 +141,49 @@ async function generateStaticFiles() {
     const productFilePath = path.join(productDir, 'index.html');
     fs.writeFileSync(productFilePath, productHtml);
     console.log(`Generated: ${productFilePath}`);
+
+    // 3. Generate Space Research Program Page
+    const spaceDir = path.join(distDir, 'space-research');
+    if (!fs.existsSync(spaceDir)) {
+        fs.mkdirSync(spaceDir, { recursive: true });
+    }
+
+    let spaceHtml = template;
+
+    // Replace Title
+    spaceHtml = spaceHtml.replace(/<title>.*?<\/title>/, `<title>${spaceResearchSeo.title}</title>`);
+
+    // Replace Meta Description
+    spaceHtml = spaceHtml.replace(
+        /<meta name="description" content=".*?" \/>/,
+        `<meta name="description" content="${spaceResearchSeo.description}" />`
+    );
+
+    // Replace Open Graph Tags
+    spaceHtml = spaceHtml.replace(
+        /<meta property="og:title" content=".*?" \/>/,
+        `<meta property="og:title" content="${spaceResearchSeo.ogTitle}" />`
+    );
+    spaceHtml = spaceHtml.replace(
+        /<meta property="og:description" content=".*?" \/>/,
+        `<meta property="og:description" content="${spaceResearchSeo.ogDescription}" />`
+    );
+    spaceHtml = spaceHtml.replace(
+        /<meta property="og:url" content=".*?" \/>/,
+        `<meta property="og:url" content="${spaceResearchSeo.url}" />`
+    );
+
+    spaceHtml = replaceOrAddMeta(spaceHtml, 'og:image', spaceResearchSeo.image);
+    spaceHtml = replaceOrAddName(spaceHtml, 'twitter:title', spaceResearchSeo.ogTitle);
+    spaceHtml = replaceOrAddName(spaceHtml, 'twitter:description', spaceResearchSeo.ogDescription);
+    spaceHtml = replaceOrAddName(spaceHtml, 'twitter:image', spaceResearchSeo.image);
+
+    spaceHtml = addCanonical(spaceHtml, spaceResearchSeo.url);
+    spaceHtml = addJsonLd(spaceHtml, buildSpaceResearchSchema());
+
+    const spaceFilePath = path.join(spaceDir, 'index.html');
+    fs.writeFileSync(spaceFilePath, spaceHtml);
+    console.log(`Generated: ${spaceFilePath}`);
 }
 
 generateStaticFiles();
