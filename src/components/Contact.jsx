@@ -124,6 +124,7 @@ const Contact = () => {
                                 >
                                     <option value="IoT Solutions">IoT Solutions</option>
                                     <option value="Krishi Suraksha AI">Krishi Suraksha AI</option>
+                                    <option value="BusBuddy Pilot">BusBuddy Pilot</option>
                                     <option value="Financial Analytics">Financial Analytics</option>
                                     <option value="Gen AI & Agentic AI">Gen AI & Agentic AI</option>
                                     <option value="Stock Analysis">Stock Analysis</option>

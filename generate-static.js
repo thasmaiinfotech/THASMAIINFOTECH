@@ -5,6 +5,7 @@ import { fileURLToPath, pathToFileURL } from 'url';
 import { build } from 'vite';
 import { teamMembers } from './src/data/teamData.js';
 import { spaceResearchSeo, buildSpaceResearchSchema } from './src/data/spaceResearchContent.js';
+import { busBuddySeo, buildBusBuddySchema } from './src/data/busBuddyContent.js';
 import { buildProfileSchema, toJsonLd } from './src/utils/structuredData.js';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -218,11 +219,60 @@ async function generateStaticFiles() {
     const render = await loadRenderer();
     spaceHtml = addPrerenderedApp(spaceHtml, await render('/space-research'));
     spaceHtml = addModulePreload(spaceHtml, 'SpaceResearchPage-');
-    fs.rmSync(ssrDir, { recursive: true, force: true });
+    // Building blocks this page shares with the BusBuddy page are split into their own chunk
+    spaceHtml = addModulePreload(spaceHtml, 'SpaceResearchUI-');
 
     const spaceFilePath = path.join(spaceDir, 'index.html');
     fs.writeFileSync(spaceFilePath, spaceHtml);
     console.log(`Generated: ${spaceFilePath}`);
+
+    // 4. Generate BusBuddy Product Page
+    const busBuddyDir = path.join(distDir, 'busbuddy');
+    if (!fs.existsSync(busBuddyDir)) {
+        fs.mkdirSync(busBuddyDir, { recursive: true });
+    }
+
+    let busBuddyHtml = template;
+
+    // Replace Title
+    busBuddyHtml = busBuddyHtml.replace(/<title>.*?<\/title>/, `<title>${busBuddySeo.title}</title>`);
+
+    // Replace Meta Description
+    busBuddyHtml = busBuddyHtml.replace(
+        /<meta name="description" content=".*?" \/>/,
+        `<meta name="description" content="${busBuddySeo.description}" />`
+    );
+
+    // Replace Open Graph Tags
+    busBuddyHtml = busBuddyHtml.replace(
+        /<meta property="og:title" content=".*?" \/>/,
+        `<meta property="og:title" content="${busBuddySeo.ogTitle}" />`
+    );
+    busBuddyHtml = busBuddyHtml.replace(
+        /<meta property="og:description" content=".*?" \/>/,
+        `<meta property="og:description" content="${busBuddySeo.ogDescription}" />`
+    );
+    busBuddyHtml = busBuddyHtml.replace(
+        /<meta property="og:url" content=".*?" \/>/,
+        `<meta property="og:url" content="${busBuddySeo.url}" />`
+    );
+
+    busBuddyHtml = replaceOrAddMeta(busBuddyHtml, 'og:image', busBuddySeo.image);
+    busBuddyHtml = replaceOrAddName(busBuddyHtml, 'twitter:title', busBuddySeo.ogTitle);
+    busBuddyHtml = replaceOrAddName(busBuddyHtml, 'twitter:description', busBuddySeo.ogDescription);
+    busBuddyHtml = replaceOrAddName(busBuddyHtml, 'twitter:image', busBuddySeo.image);
+
+    busBuddyHtml = addCanonical(busBuddyHtml, busBuddySeo.url);
+    busBuddyHtml = addJsonLd(busBuddyHtml, buildBusBuddySchema());
+
+    busBuddyHtml = addPrerenderedApp(busBuddyHtml, await render('/busbuddy'));
+    busBuddyHtml = addModulePreload(busBuddyHtml, 'BusBuddyPage-');
+    busBuddyHtml = addModulePreload(busBuddyHtml, 'SpaceResearchUI-');
+    fs.rmSync(ssrDir, { recursive: true, force: true });
+
+    const busBuddyFilePath = path.join(busBuddyDir, 'index.html');
+    fs.writeFileSync(busBuddyFilePath, busBuddyHtml);
+    console.log(`Generated: ${busBuddyFilePath}`);
 }
 
 generateStaticFiles().catch((error) => {

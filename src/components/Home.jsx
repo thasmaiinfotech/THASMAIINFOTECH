@@ -1,6 +1,7 @@
 import React from 'react';
 import Hero from './Hero';
 import FlagshipProduct from './FlagshipProduct';
+import BusBuddy from './BusBuddy';
 import SpaceResearch from './SpaceResearch';
 import Services from './Services';
 import Programs from './Programs';
@@ -18,6 +19,7 @@ const Home = () => {
         <>
             <Hero />
             <FlagshipProduct />
+            <BusBuddy />
             <SpaceResearch />
             <Services />
             <Programs />

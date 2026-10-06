@@ -41,9 +41,25 @@ export default {
         'dash-flow': {
           to: { strokeDashoffset: '-48' },
         },
+        // Draws a path in from its start; the path needs pathLength="100" and strokeDasharray="100"
+        'route-draw': {
+          from: { strokeDashoffset: '100' },
+          to: { strokeDashoffset: '0' },
+        },
+        'fade-in': {
+          from: { opacity: '0' },
+          to: { opacity: '1' },
+        },
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(6px)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
       },
       animation: {
         'dash-flow': 'dash-flow 6s linear infinite',
+        'route-draw': 'route-draw 1.2s ease-out both',
+        'fade-in': 'fade-in 0.5s ease-out both',
+        'fade-up': 'fade-up 0.45s ease-out both',
       }
     },
   },
